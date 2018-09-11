@@ -1,0 +1,3 @@
+verification:
+  ribbon:
+    listOfServers: http://verification:8080

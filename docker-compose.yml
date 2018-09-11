@@ -1,0 +1,30 @@
+version: '3'
+services:
+  gateway:
+    build: gateway/
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    links:
+      - verification
+    ports:
+      - 8000:8000
+  verification:
+    build: verification/
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - 8080:8080
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null # --quiet

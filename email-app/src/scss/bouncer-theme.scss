@@ -1,0 +1,58 @@
+@import '../../node_modules/@angular/material/theming';
+
+@import "colors";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$mat-bouncer: (
+  50: $bouncer-color,
+  100: $bouncer-color,
+  200: $bouncer-color,
+  300: $bouncer-color,
+  400: $bouncer-color,
+  500: $bouncer-color,
+  600: $bouncer-color,
+  700: $bouncer-color,
+  800: $bouncer-color,
+  900: $bouncer-color,
+  A100: $bouncer-color,
+  A200: $bouncer-color,
+  A400: $bouncer-color,
+  A700: $bouncer-color,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: white,
+    500: white,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: white,
+    A700: $white-87-opacity,
+  )
+);
+$bouncer-primary: mat-palette($mat-bouncer);
+$bouncer-accent:  mat-palette($mat-bouncer, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$bouncer-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$bouncer-theme: mat-light-theme($bouncer-primary, $bouncer-accent, $bouncer-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($bouncer-theme);

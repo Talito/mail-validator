@@ -1,0 +1,14 @@
+prerequisites:
+- npm
+- ng (Angular CLI)
+- mvn
+- docker
+- docker-compose
+
+build && run:
+# mvn clean install && docker-compose up
+# cd email-app && npm install && ng serve --open
+
+todo:
+- tasks has been described in TODO comments in code
+- Any parts of the project require improvements?

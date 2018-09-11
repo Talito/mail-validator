@@ -1,0 +1,12 @@
+server.port: 8000
+
+zuul:
+  routes:
+    verification:
+      path: /v1/email/**
+      serviceId: verification
+
+verification:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: http://localhost:8080
