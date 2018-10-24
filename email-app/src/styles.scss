@@ -7,4 +7,10 @@ body {
   min-height: 100vh;
   margin: 0;
   background-color: $bouncer-color;
+  text-align: center;
+}
+
+h1 {
+  font-family: Roboto, serif;
+  font-size: 3em;
 }

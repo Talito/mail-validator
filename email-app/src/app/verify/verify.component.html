@@ -4,4 +4,5 @@
   </mat-form-field>
 
   <button mat-raised-button (click)="verify(emailField.value)">Verify</button>
+  <div *ngIf="apiIsAccessible == false" class="warn">Ooops, looks like you have no Internet. Don't forget to try later again.</div>
 </form>

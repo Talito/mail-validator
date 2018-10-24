@@ -8,19 +8,22 @@ import {EmailService} from '../email.service';
 })
 export class VerifyComponent implements OnInit {
 
+  apiIsAccessible: boolean;
   constructor(
     private emailService: EmailService
   ) {
   }
 
-  ngOnInit() {
+  verify(email: string) {
+    this.emailService.verify(email)
+      .subscribe(x => {
+        this.apiIsAccessible = true;
+        this.emailService.requestEmailVerifications()
+      }, x => { this.apiIsAccessible = false; });
   }
 
-  verify(email: string) {
-    // TODO after verification email should appear in history instead of opening an alert
-    this.emailService.verify(email)
-      .subscribe(verification => {
-        alert(verification.status);
-      });
+  ngOnInit(): void {
+    this.emailService.history()
+      .subscribe(x => this.emailService.requestEmailVerifications());
   }
 }

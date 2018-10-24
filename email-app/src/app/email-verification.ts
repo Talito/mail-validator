@@ -1,4 +1,4 @@
-export class EmailVerification {
+export interface EmailVerification {
   email: string;
   status: string;
 }
