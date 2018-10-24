@@ -69,6 +69,15 @@
                     <finalName>service</finalName>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <configLocation>google_checks.xml</configLocation>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
