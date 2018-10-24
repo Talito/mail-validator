@@ -13,7 +13,7 @@ public class EmailVerification {
     private Status status;
     private Instant verifiedAt;
 
-    enum Status {
+    public enum Status {
         OK, INVALID_FORMAT, INVALID_DOMAIN, INVALID_EMAIL
     }
 }
