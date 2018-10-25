@@ -11,6 +11,23 @@
   word-break: break-all;
 }
 
+.three-times-bigger {
+  font-size: 3em;
+}
+
+.two-times-bigger {
+  font-size: 2em;
+}
+
+.with-italic {
+  font-style: italic;
+}
+
+#call-to-action {
+  color: orange;
+  font-weight: bold;
+}
+
 @media screen and (min-device-width: 1200px){
 
   .mat-card {
