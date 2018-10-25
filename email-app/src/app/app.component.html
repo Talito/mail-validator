@@ -2,14 +2,14 @@
   <app-verify></app-verify>
 </mat-card>
 
-<mat-card>
-  <div class="container">
+<div class="container">
+  <mat-card>
     <div>
       <p class="three-times-bigger with-italic">
         The most intelligent email verification
       </p>
       <p class="two-times-bigger">
-        Do you want to validate your emails' list? <span id="call-to-action">Give it a try</span>. Try as many emails as you want!
+        Do you want to validate your emails' list? <span id="call-to-action">Give it a try!</span>
       </p>
     </div>
     <mat-list>
@@ -18,8 +18,8 @@
         <span class="breakable" [ngClass]="{'invalid': v.status!='OK'}"><span>{{v.email}}</span>:&nbsp;<span>{{v.status}}</span></span>
       </mat-list-item>
     </mat-list>
-  </div>
-</mat-card>
+  </mat-card>
+</div>
 
 <app-footer></app-footer>
 

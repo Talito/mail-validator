@@ -4,11 +4,10 @@
 @import "scss/bouncer-theme";
 
 html, body {
-  min-height: 100%;
+  height: 100%;
 }
 
 body {
-  min-height: 100vh;
   margin: 0;
   background-color: $bouncer-color;
   text-align: center;
