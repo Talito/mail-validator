@@ -7,6 +7,10 @@
   color: lightgrey;
 }
 
+.breakable {
+  word-break: break-all;
+}
+
 @media screen and (min-device-width: 1200px){
 
   .mat-card {

@@ -2,7 +2,7 @@
   <mat-form-field>
     <input matInput type="email" #emailField/>
   </mat-form-field>
+  <button class="left-space featured-text" color="primary" mat-raised-button (click)="verify(emailField.value)">Verify</button>
+  <div *ngIf="apiIsAccessible == false" class="warn">Ooops, looks like you have no Internet. You can always try it later.</div>
 
-  <button mat-raised-button (click)="verify(emailField.value)">Verify</button>
-  <div *ngIf="apiIsAccessible == false" class="warn">Ooops, looks like you have no Internet. Don't forget to try later again.</div>
 </form>

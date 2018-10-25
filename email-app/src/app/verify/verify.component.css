@@ -1,3 +1,11 @@
 .warn {
   color: orange;
 }
+
+.left-space {
+  margin-left: 2em;
+}
+
+.featured-text {
+  font-size: 1.25em;
+}

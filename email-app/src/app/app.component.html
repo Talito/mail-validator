@@ -7,7 +7,7 @@
     <mat-list>
       <!-- TODO:  | async -->
       <mat-list-item *ngFor="let v of history">
-        <span [ngClass]="{'invalid': v.status!='OK'}"><span>{{v.email}}</span>:&nbsp;<span>{{v.status}}</span></span>
+        <span class="breakable" [ngClass]="{'invalid': v.status!='OK'}"><span>{{v.email}}</span>:&nbsp;<span>{{v.status}}</span></span>
       </mat-list-item>
     </mat-list>
   </div>
