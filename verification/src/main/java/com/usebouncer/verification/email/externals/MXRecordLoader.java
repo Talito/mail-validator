@@ -18,7 +18,7 @@ public class MXRecordLoader {
     }
 
     public static boolean existMXRecords(final String domain) {
-        return getMXRecords(domain).isEmpty();
+        return !getMXRecords(domain).isEmpty();
     }
 
     private static List<MXRecord> getMXRecords(final String domain) {
