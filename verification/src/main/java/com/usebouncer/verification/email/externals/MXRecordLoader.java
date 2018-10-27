@@ -4,35 +4,32 @@ import org.springframework.util.StringUtils;
 import org.xbill.DNS.*;
 
 import java.net.UnknownHostException;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MXRecordLoader {
 
     private static final int THIRTY_SECONDS = 30;
 
-    public static Optional<Record[]> loadResults(final String domain) {
+    public static List<MXRecord> loadResults(final String domain) {
         Lookup lookup;
-        Record[] records = new Record[]{};
+        MXRecord[] records = new MXRecord[]{};
+        List<MXRecord> results = new ArrayList<>();
         if (StringUtils.isEmpty(domain)) {
-            return Optional.empty();
+            return results;
         }
         try {
             lookup = new Lookup(domain, Type.MX);
             lookup.setResolver(getConfiguredSimpleResolver(new SimpleResolver()));
-            records = lookup.run();
+            Record[] rar = lookup.run();
+            for (Record r: rar) {
+                MXRecord mxRecord = (MXRecord) r;
+                results.add(mxRecord);
+            }
         } catch (TextParseException | UnknownHostException e) {
             e.printStackTrace();
         }
-        if (records != null && records.length == 0) {
-            try {
-                lookup = new Lookup(domain, Type.A);
-                lookup.setResolver(getConfiguredSimpleResolver(new SimpleResolver()));
-                records = lookup.run();
-            } catch (TextParseException | UnknownHostException e) {
-                e.printStackTrace();
-            }
-        }
-        return Optional.ofNullable(records);
+        return results;
     }
 
     public static boolean existMXRecords(final String domain) {
@@ -48,20 +45,7 @@ public class MXRecordLoader {
         } catch (TextParseException | UnknownHostException e) {
             e.printStackTrace();
         }
-        if (records != null && records.length > 0) {
-            return true;
-        }
-        try {
-            lookup = new Lookup(domain, Type.A);
-            lookup.setResolver(getConfiguredSimpleResolver(new SimpleResolver()));
-            records = lookup.run();
-        } catch (TextParseException | UnknownHostException e) {
-            e.printStackTrace();
-        }
-        if (records != null && records.length > 0) {
-            return true;
-        }
-        return false;
+        return records != null && records.length > 0;
     }
 
     private static SimpleResolver getConfiguredSimpleResolver(final SimpleResolver simpleResolver) {
