@@ -2,7 +2,7 @@ package com.usebouncer.verification.email;
 
 import com.usebouncer.verification.email.repository.EmailVerificationData;
 import com.usebouncer.verification.email.repository.EmailVerificationDataRepository;
-import com.usebouncer.verification.email.verificators.EmailMXRecordVerificator;
+import com.usebouncer.verification.email.verificators.EmailVerificator;
 import io.vavr.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -17,15 +17,18 @@ import static java.util.Optional.ofNullable;
 @Service
 public class EmailVerificationService {
     private final EmailVerificationDataRepository repository;
+    private final EmailVerificator verificator;
 
     @Autowired
-    public EmailVerificationService(final EmailVerificationDataRepository repository) {
+    public EmailVerificationService(final EmailVerificationDataRepository repository,
+                                    final EmailVerificator emailVerificator) {
         this.repository = repository;
+        this.verificator = emailVerificator;
     }
 
     EmailVerification verify(final String email) {
         return ofNullable(email)
-                .map(EmailMXRecordVerificator::verifyEmail)
+                .map(verificator::verifyEmail)
                 .map(emailStatus ->
                         Tuple.of(emailStatus,
                                 saveEmailVerificationToDatabase(email, emailStatus.name(), Instant.now())))
