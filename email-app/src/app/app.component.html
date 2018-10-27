@@ -13,9 +13,14 @@
       </p>
     </div>
     <mat-list>
-      <!-- TODO:  | async -->
       <mat-list-item *ngFor="let v of history">
-        <span class="breakable" [ngClass]="{'invalid': v.status!='OK'}"><span>{{v.email}}</span>:&nbsp;<span>{{v.status}}</span></span>
+        <span class="breakable" [ngClass]="{'invalid': v.status!='OK'}">
+          <span>{{v.email}}</span>:
+          &nbsp;
+          <span>{{v.status}}</span>
+          &nbsp;
+          <span *ngIf="v.status == 'OK'" class="green-tick">&#10003;</span>
+        </span>
       </mat-list-item>
     </mat-list>
   </mat-card>

@@ -1,5 +1,6 @@
 package com.usebouncer.verification.email;
 
+import com.usebouncer.verification.email.model.EmailVerification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,5 +1,6 @@
 package com.usebouncer.verification.email;
 
+import com.usebouncer.verification.email.model.EmailVerification;
 import com.usebouncer.verification.email.repository.EmailVerificationData;
 import com.usebouncer.verification.email.repository.EmailVerificationDataRepository;
 import com.usebouncer.verification.email.verificators.EmailVerificator;

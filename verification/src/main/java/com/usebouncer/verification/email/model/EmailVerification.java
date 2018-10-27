@@ -1,4 +1,4 @@
-package com.usebouncer.verification.email;
+package com.usebouncer.verification.email.model;
 
 import lombok.Builder;
 import lombok.Value;
