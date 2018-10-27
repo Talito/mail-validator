@@ -63,6 +63,7 @@ public class EmailVerificator {
             smtpClient.setDefaultTimeout(5);
             smtpClient.setConnectTimeout(10);
             smtpClient.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
+            // TODO: research about library
             smtpClient.connect(highestPriorityRecord.get().getAdditionalName().toString());
             result = smtpClient.verify(email);
         } catch (IOException e) {
