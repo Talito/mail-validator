@@ -40,8 +40,8 @@ public class EmailVerificator {
         }
         return Optional.of(email)
                 .map(x -> Match(x).of(
-                        Case($(this::emailDoesNotExistAtDomain), () -> EmailVerification.Status.INVALID_EMAIL),
                         Case($(this::hasInvalidDomain), () -> EmailVerification.Status.INVALID_DOMAIN),
+                        Case($(this::emailDoesNotExistAtDomain), () -> EmailVerification.Status.INVALID_EMAIL),
                         Case($(), () -> EmailVerification.Status.OK)
                 )).orElse(null);
 
@@ -52,7 +52,7 @@ public class EmailVerificator {
         final List<MXRecord> mxRecords = MXRecordLoader.loadResults(domain).stream()
                 .sorted(Comparator.comparing(MXRecord::getPriority))
                 .collect(Collectors.toList());
-        for (MXRecord record: mxRecords) {
+        for (MXRecord record : mxRecords) {
             try {
                 smtpClient.connect(record.getAdditionalName().toString());
                 final int exists = smtpClient.vrfy(email);
@@ -60,11 +60,14 @@ public class EmailVerificator {
                     return true;
                 }
             } catch (IOException e) {
+                log.error("Could not connect and verify the email {} with the SMTP server {} (domain: {}).",
+                        email, record.getAdditionalName().toString(), domain);
                 e.printStackTrace();
             } finally {
                 try {
                     smtpClient.disconnect();
                 } catch (IOException e) {
+                    log.error("Could not disconnect the SMTP client.");
                     e.printStackTrace();
                 }
             }
