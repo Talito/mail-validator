@@ -1,46 +1,47 @@
 package com.usebouncer.verification.email.externals;
 
-import io.vavr.Tuple;
-import io.vavr.Tuple2;
 import org.junit.Test;
-import org.xbill.DNS.Record;
+import org.xbill.DNS.MXRecord;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class MXRecordLoaderTest {
 
-//    @Test
-//    public void givenNullDomainShouldReturnEmptyRecordsAndFailedResult() {
-//        final String domain = null;
-//        Tuple2<Record[], Integer> recordsAndResult = MXRecordLoader.loadResults(domain);
-//        assertThat(recordsAndResult).isEqualTo(Tuple.of(new Record[]{}, -1));
-//    }
-//
-//    @Test
-//    public void givenDomainShouldReturnRecords() {
-//        final String domain = "gmail.com";
-//        Tuple2<Record[], Integer> recordsAndResult = MXRecordLoader.loadResults(domain);
-//        assertThat(recordsAndResult._1()).isNotEmpty();
-//    }
-//
-//    @Test
-//    public void givenDomainShouldReturnSuccessfulResult() {
-//        final String domain = "gmail.com";
-//        Tuple2<Record[], Integer> recordsAndResult = MXRecordLoader.loadResults(domain);
-//        assertThat(recordsAndResult._2()).isEqualTo(0);
-//    }
-//
-//    @Test
-//    public void givenInvalidDomainShouldReturnNoRecordsAndNXDomainResult() {
-//        final String domain = "fawkefowefkpawefjweofweofew.com";
-//        Tuple2<Record[], Integer> recordsAndResult = MXRecordLoader.loadResults(domain);
-//        assertThat(recordsAndResult).isEqualTo(Tuple.of(new Record[]{}, 3));
-//    }
-//
-//    @Test
-//    public void givenInvalidDomain2ShouldReturnNoRecordsAndNXDomainResult() {
-//        final String domain = "gmail.a";
-//        Tuple2<Record[], Integer> recordsAndResult = MXRecordLoader.loadResults(domain);
-//        assertThat(recordsAndResult).isEqualTo(Tuple.of(new Record[]{}, 3));
-//    }
+    @Test
+    public void givenNullDomainShouldReturnEmptyRecords() {
+        final String domain = null;
+        List<MXRecord> recordsAndResult = MXRecordLoader.loadResults(domain);
+        assertThat(recordsAndResult).isEmpty();
+    }
+
+    @Test
+    public void givenEmptyDomainShouldReturnEmptyRecords() {
+        final String domain = "";
+        List<MXRecord> recordsAndResult = MXRecordLoader.loadResults(domain);
+        assertThat(recordsAndResult).isEmpty();
+    }
+
+    @Test
+    public void givenDomainShouldReturnRecords() {
+        final String domain = "gmail.com";
+        List<MXRecord> recordsAndResult = MXRecordLoader.loadResults(domain);
+        assertThat(recordsAndResult).isNotEmpty();
+    }
+
+    @Test
+    public void givenInvalidDomainShouldReturnNoRecordsAndNXDomainResult() {
+        final String domain = "fawkefowefkpawefjweofweofew.com";
+        List<MXRecord> recordsAndResult = MXRecordLoader.loadResults(domain);
+        assertThat(recordsAndResult).isEmpty();
+    }
+
+    @Test
+    public void givenInvalidDomain2ShouldReturnNoRecordsAndNXDomainResult() {
+        final String domain = "gmail.a";
+        List<MXRecord> recordsAndResult = MXRecordLoader.loadResults(domain);
+        assertThat(recordsAndResult).isEmpty();
+    }
 }
